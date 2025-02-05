@@ -8,7 +8,7 @@ const Sidebar = () => {
   const [isSubjectOpen, setIsSubjectOpen] = useState(false);
   const [isNotesOpen, setIsNotesOpen] = useState(false);
   const [isOrdersOpen, setIsOrdersOpen] = useState(false);
-
+  const [isPdfOrderOpen, setIsPdfOrderOpen] = useState(false);
   return (
     <div>
       <aside className="bg-gray-800 text-white w-64 py-8 px-2 fixed top-0 bottom-0 z-10">
@@ -103,6 +103,13 @@ const Sidebar = () => {
                 </Link>
               </ul>
             )}
+          </div>
+           {/** for sending the pdf by admin panel */}
+          <div className="mb-4">
+                <Link to="send-pdf"
+                   className="hover:text-white cursor-pointer hover:bg-gray-700 px-4 py-2 rounded-md">
+                    Send PDF
+                </Link>
           </div>
         </nav>
       </aside>

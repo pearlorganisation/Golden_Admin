@@ -8,6 +8,7 @@ import ListNotes from "./pages/ListNotes/ListNotes";
 import ListSubjects from "./pages/ListSubjects/ListSubjects";
 import AddSubject from "./pages/AddSubject/AddSubject";
 import ViewSubject from "./pages/ViewSubject/ViewSubject";
+import SendPDF from "./pages/SendPDF/SendPDF";
 
 const router = createBrowserRouter([
   {
@@ -42,6 +43,10 @@ const router = createBrowserRouter([
         path: "viewSubject/:id",
         element: <ViewSubject />,
       },
+      {
+        path:"send-pdf",
+        element:<SendPDF />
+      }
     ],
   },
 ]);
