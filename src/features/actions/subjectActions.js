@@ -1,5 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { axiosInstance } from "../../services/axiosInterceptor";
+import { toast } from "react-toastify";
 
 export const getAllSubjects = createAsyncThunk(
   "/get-all",
@@ -48,6 +49,8 @@ export const createSubject = createAsyncThunk(
     try {
       const formData = new FormData();
       console.log("-----------", userData);
+
+      userData.pdf;
       userData.banner.forEach((image) => {
         formData.append("banner", image);
       });
@@ -62,11 +65,15 @@ export const createSubject = createAsyncThunk(
           "Content-Type": "multipart/form-data",
         },
       });
+
+      toast.success("Subject Created Successfully");
       return data.data;
     } catch (error) {
       if (error.response && error.response.data.message) {
+        toast.error(error.response.data.message);
         return rejectWithValue(error.response.data.message);
       } else {
+        toast.error(error.message);
         return rejectWithValue(error.message);
       }
     }
