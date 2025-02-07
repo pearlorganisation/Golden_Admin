@@ -27,7 +27,7 @@ const Sidebar = () => {
             </div>
             {isUsersOpen && (
               <ul className="mt-2 ml-4 space-y-2">
-                <Link to="/all-users">
+                <Link to="all-users">
                   <li className="hover:text-white cursor-pointer hover:bg-gray-700 px-4 py-2 rounded-md">
                     All Users
                   </li>
@@ -60,58 +60,15 @@ const Sidebar = () => {
             )}
           </div>
           {/*------------Notes section---------------*/}
-          <div className="mb-4">
-            <div
-              onClick={() => setIsNotesOpen(!isNotesOpen)}
-              className="flex justify-between items-center cursor-pointer hover:bg-gray-700 px-4 py-2 rounded-md"
-            >
-              <span>Note </span>
-              {isNotesOpen ? <FaChevronUp /> : <FaChevronDown />}
-            </div>
-            {isNotesOpen && (
-              <ul className="mt-2 ml-4 space-y-2">
-                <Link to="notes">
-                  <li className="hover:text-white cursor-pointer hover:bg-gray-700 px-4 py-2 rounded-md">
-                    List Notes
-                  </li>
-                </Link>
-                <Link to="create-notes">
-                  <li className="hover:text-white cursor-pointer hover:bg-gray-700 px-4 py-2 rounded-md">
-                    Create Notes
-                  </li>
-                </Link>
-              </ul>
-            )}
-          </div>
-          <div className="mb-4">
-            <div
-              onClick={() => setIsSubjectOpen(!isSubjectOpen)}
-              className="flex justify-between items-center cursor-pointer hover:bg-gray-700 px-4 py-2 rounded-md"
-            >
-              <span>Faculty </span>
-              {isSubjectOpen ? <FaChevronUp /> : <FaChevronDown />}
-            </div>
-            {isSubjectOpen && (
-              <ul className="mt-2 ml-4 space-y-2">
-                <Link to="create-faculty">
-                  <li className="hover:text-white cursor-pointer hover:bg-gray-700 px-4 py-2 rounded-md">
-                    Create faculty
-                  </li>
-                </Link>
-                <Link to="subjects">
-                  <li className="hover:text-white cursor-pointer hover:bg-gray-700 px-4 py-2 rounded-md">
-                    List Subjects
-                  </li>
-                </Link>
-              </ul>
-            )}
-          </div>
+
           {/* Orders Section */}
           <div className="mb-1">
             <div
               onClick={() => setIsOrdersOpen(!isOrdersOpen)}
               className="flex justify-between items-center cursor-pointer hover:bg-gray-700 px-4 py-2 rounded-md"
-            >    <span>Orders</span>
+            >
+              {" "}
+              <span>Orders</span>
               {isOrdersOpen ? <FaChevronUp /> : <FaChevronDown />}
             </div>
             {isOrdersOpen && (
@@ -126,12 +83,14 @@ const Sidebar = () => {
               </ul>
             )}
           </div>
-           {/** for sending the pdf by admin panel */}
+          {/** for sending the pdf by admin panel */}
           <div className="mb-4">
-                <Link to="send-pdf"
-                   className="hover:text-white cursor-pointer hover:bg-gray-700 px-4 py-2 rounded-md">
-                    Send PDF
-                </Link>
+            <Link
+              to="send-pdf"
+              className="hover:text-white cursor-pointer hover:bg-gray-700 px-4 py-2 rounded-md"
+            >
+              Send PDF
+            </Link>
           </div>
         </nav>
       </aside>
