@@ -250,7 +250,7 @@ const ListSubjects = () => {
                       Subject Name
                     </th>
                     <th scope="col" className="px-2 py-3">
-                      Faculty
+                      Discounted Price
                     </th>
                     <th scope="col" className="px-2 py-3">
                       Price
@@ -295,7 +295,7 @@ const ListSubjects = () => {
                           </th>
                           <td className="px-4 py-3">{subject?.name}</td>
                           <td className="px-2 py-3">
-                            {subject?.faculty?.fullName}
+                            {subject?.discountedPrice}
                           </td>
                           <td className="px-2 py-3">{subject?.price}</td>
                           <td className="px-2 py-3">
@@ -353,15 +353,6 @@ const ListSubjects = () => {
               )}
             </div>
           </div>
-
-          {subjects?.length > 0 && Array.isArray(subjects) && (
-            <Pagination
-              paginate={pagination}
-              currentPage={currentPage}
-              totalPages={totalPages}
-              handlePageClick={handlePageClick}
-            />
-          )}
         </div>
       </section>
     </div>

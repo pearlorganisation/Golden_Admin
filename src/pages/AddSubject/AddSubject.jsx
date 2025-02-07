@@ -2,13 +2,17 @@ import React, { useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 
-import { ToastContainer } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 import { createSubject } from "../../features/actions/subjectActions";
 
 const AddSubject = () => {
   const dispatch = useDispatch();
   const [image, setImage] = useState(null);
   const [imagePreview, setImagePreview] = useState(null);
+
+  const [loading, setLoading] = useState(false);
+
+  const [pdf, setPdf] = useState(null);
 
   const {
     register,
@@ -25,6 +29,7 @@ const AddSubject = () => {
       pages: "",
       price: "",
       banner: null,
+      pdf: null,
     },
   });
 
@@ -36,13 +41,37 @@ const AddSubject = () => {
 
   /** handle for selecting the images */
   const handleSelectImage = (e) => {
-    setSelectedImages(Array.from(e.target.files));
+    const files = Array.from(e.target.files);
+    setSelectedImages(files);
+    const previews = files.map((file) => URL.createObjectURL(file));
+    setImagePreview(previews);
+  };
+
+  const handleSelectPdf = (e) => {
+    setPdf(e.target.files[0]);
   };
 
   const onSubmit = (data) => {
-    const formData = { ...data, banner: selectedImages };
+    const formData = { ...data, banner: selectedImages, pdf };
+    setLoading(true);
     dispatch(createSubject(formData));
+    setLoading(false);
   };
+
+  useEffect(() => {
+    if (isSuccess) {
+      reset();
+      setSelectedImages([]);
+      setPdf(null);
+      setImagePreview(null);
+    }
+  }, [isSuccess, reset]);
+
+  useEffect(() => {
+    if (isError) {
+      toast.error(message || "An error occurred");
+    }
+  }, [isError, message]);
 
   return (
     <div className="ml-72">
@@ -73,6 +102,19 @@ const AddSubject = () => {
               } rounded-lg focus:ring-blue-500 focus:border-blue-500`}
             />
           </div>
+
+          {imagePreview && (
+            <div className="flex space-x-4">
+              {imagePreview.map((src, index) => (
+                <img
+                  key={index}
+                  src={src}
+                  alt={`preview-${index}`}
+                  className="h-20 w-20 object-cover rounded-lg"
+                />
+              ))}
+            </div>
+          )}
 
           {/* Subject Name */}
           <div className="mb-6">
@@ -210,12 +252,42 @@ const AddSubject = () => {
             )}
           </div>
 
+          {/* Subject PDF Upload */}
+          <div className="mb-6">
+            <label
+              htmlFor="pdf"
+              className="block mb-2 text-sm font-medium text-gray-700"
+            >
+              Upload Subject PDF
+            </label>
+            <input
+              type="file"
+              id="pdf"
+              accept=".pdf"
+              {...register("pdf", {
+                required: "PDF file is required",
+              })}
+              onChange={handleSelectPdf}
+              className={`block w-full text-sm text-gray-500 file:py-2 file:px-4 file:rounded-md file:bg-blue-50 file:text-blue-700 ${
+                errors.pdf ? "border-red-500" : "border-gray-300"
+              } rounded-lg focus:ring-blue-500 focus:border-blue-500`}
+            />
+            {errors.pdf && (
+              <p className="text-red-500 text-sm mt-1">{errors.pdf.message}</p>
+            )}
+          </div>
+
           <>
             <button
               type="submit"
-              className=" bg-blue-500 text-white p-3 rounded-lg hover:bg-blue-600 transition-colors"
+              disabled={isLoading}
+              className={`p-3 rounded-lg transition-colors ${
+                loading
+                  ? "bg-gray-400 text-gray-700"
+                  : "bg-blue-500 text-white hover:bg-blue-600"
+              }`}
             >
-              Save Subject
+              {isLoading ? "Saving..." : "Save Subject"}
             </button>
           </>
 
