@@ -27,7 +27,7 @@ const Sidebar = () => {
             </div>
             {isUsersOpen && (
               <ul className="mt-2 ml-4 space-y-2">
-                <Link to="/all-users">
+                <Link to="all-users">
                   <li className="hover:text-white cursor-pointer hover:bg-gray-700 px-4 py-2 rounded-md">
                     All Users
                   </li>
@@ -83,13 +83,35 @@ const Sidebar = () => {
               </ul>
             )}
           </div>
-
+          <div className="mb-4">
+            <div
+              onClick={() => setIsSubjectOpen(!isSubjectOpen)}
+              className="flex justify-between items-center cursor-pointer hover:bg-gray-700 px-4 py-2 rounded-md"
+            >
+              <span>Faculty </span>
+              {isSubjectOpen ? <FaChevronUp /> : <FaChevronDown />}
+            </div>
+            {isSubjectOpen && (
+              <ul className="mt-2 ml-4 space-y-2">
+                <Link to="create-faculty">
+                  <li className="hover:text-white cursor-pointer hover:bg-gray-700 px-4 py-2 rounded-md">
+                    Create faculty
+                  </li>
+                </Link>
+                <Link to="subjects">
+                  <li className="hover:text-white cursor-pointer hover:bg-gray-700 px-4 py-2 rounded-md">
+                    List Subjects
+                  </li>
+                </Link>
+              </ul>
+            )}
+          </div>
           {/* Orders Section */}
           <div className="mb-1">
             <div
               onClick={() => setIsOrdersOpen(!isOrdersOpen)}
               className="flex justify-between items-center cursor-pointer hover:bg-gray-700 px-4 py-2 rounded-md"
-            >
+            >    <span>Orders</span>
               {isOrdersOpen ? <FaChevronUp /> : <FaChevronDown />}
             </div>
             {isOrdersOpen && (

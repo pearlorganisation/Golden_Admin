@@ -10,6 +10,9 @@ import AddSubject from "./pages/AddSubject/AddSubject";
 import ViewSubject from "./pages/ViewSubject/ViewSubject";
 import SendPDF from "./pages/SendPDF/SendPDF";
 import EditSubject from "./pages/EditSubject/EditSubject";
+import Addfaculty from "./pages/AddFaculty/Addfaculty";
+import ListOrders from "./pages/ListOrders/ListOrders";
+import Alluser from "./pages/Users/Alluser";
 
 const router = createBrowserRouter([
   {
@@ -51,6 +54,18 @@ const router = createBrowserRouter([
       {
         path: "send-pdf",
         element: <SendPDF />,
+      },
+      {
+        path: "create-faculty",
+        element: <Addfaculty />,
+      },
+      {
+        path: "orders",
+        element: <ListOrders />,
+      },
+      {
+        path: "all-users",
+        element: <Alluser />,
       },
     ],
   },

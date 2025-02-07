@@ -6,7 +6,9 @@ import persistReducer from "redux-persist/es/persistReducer";
 import storage from "redux-persist/lib/storage";
 import persistStore from "redux-persist/es/persistStore";
 import subjectReducer from "./slices/subjectSlice";
-import sendPdfByAdminReducer from "./slices/sendPdfByAdminSlice"
+import sendPdfByAdminReducer from "./slices/sendPdfByAdminSlice";
+import orderRudcer from "./slices/orderSlice";
+
 const persistConfig = {
   key: "golden_admin",
   version: 1,
@@ -26,7 +28,8 @@ const persistConfig = {
 const reducer = combineReducers({
   auth: authReducer,
   subject: subjectReducer,
-  adminPdfs: sendPdfByAdminReducer
+  adminPdfs: sendPdfByAdminReducer,
+  order: orderRudcer,
 });
 
 const rootReducer = (state, action) => {
