@@ -31,3 +31,26 @@ export const adminLogin = createAsyncThunk(
     }
   }
 );
+
+
+
+ export const getAlluser= createAsyncThunk("get/alluser",
+  async(_,{rejectWithValue})=>{
+    try{
+      const  config ={
+        headers:{
+          "Content-Type":"application/json"
+        }
+      }
+const response = await axiosInstance.get("/v1/auth/get-users",config)
+return response.data
+    }catch(error){
+      if(error.response && error.response.data.message){
+        toast.error(error.response && error.response.data.message)
+      return rejectWithValue(error.response && error.response.data.message)}
+        else{      
+      toast.error(error.message);
+      return rejectWithValue(error.message);}
+    }
+  }
+ )

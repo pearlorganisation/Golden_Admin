@@ -6,6 +6,7 @@ import persistReducer from "redux-persist/es/persistReducer";
 import storage from "redux-persist/lib/storage";
 import persistStore from "redux-persist/es/persistStore";
 import subjectReducer from "./slices/subjectSlice";
+import orderRudcer from "./slices/orderSlice"
 
 const persistConfig = {
   key: "golden_admin",
@@ -26,6 +27,7 @@ const persistConfig = {
 const reducer = combineReducers({
   auth: authReducer,
   subject: subjectReducer,
+  order:orderRudcer
 });
 
 const rootReducer = (state, action) => {

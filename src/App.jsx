@@ -8,6 +8,10 @@ import ListNotes from "./pages/ListNotes/ListNotes";
 import ListSubjects from "./pages/ListSubjects/ListSubjects";
 import AddSubject from "./pages/AddSubject/AddSubject";
 import ViewSubject from "./pages/ViewSubject/ViewSubject";
+import Addfaculty from "./pages/AddFaculty/Addfaculty";
+import ListOrders from "./pages/ListOrders/ListOrders";
+import Alluser from "./pages/Users/Alluser";
+
 
 const router = createBrowserRouter([
   {
@@ -42,8 +46,23 @@ const router = createBrowserRouter([
         path: "viewSubject/:id",
         element: <ViewSubject />,
       },
+      {
+        path:"create-faculty",
+        element:<Addfaculty/>
+      },{
+        path:"orders",
+        element:<ListOrders/>
+
+      },
+      {
+        path:"all-users",
+        element:<Alluser/>
+      }
     ],
+
+
   },
+ 
 ]);
 
 function App() {
