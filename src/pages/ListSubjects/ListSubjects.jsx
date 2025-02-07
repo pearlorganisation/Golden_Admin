@@ -317,7 +317,7 @@ const ListSubjects = () => {
                                 </button>
                                 <li>
                                   <a
-                                    href={`editblog/${subject?._id}`}
+                                    href={`editSubject/${subject?._id}`}
                                     className="block py-2 px-4 bg-blue-500  rounded-md"
                                   >
                                     Edit

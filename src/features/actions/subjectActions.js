@@ -80,43 +80,27 @@ export const createSubject = createAsyncThunk(
   }
 );
 
-// export const createSubject = createAsyncThunk(
-//   "subject/post",
-//   async (userdata, thunkAPI) => {
-//     console.log("userdata111", userdata);
-
-//     try {
-//       const formData = new FormData();
-
-//       formData.append("banner", userdata.banner);
-
-//       for (const key in userdata) {
-//         if (key !== "banner") {
-//           console.log(key);
-//           formData.append(key, userdata[key]);
-//         }
-//       }
-
-//       const { data } = await axiosInstance.post(`/subject`, formData, {
-//         headers: {
-//           "Content-Type": "multipart/form-data",
-//         },
-//       });
-
-//       console.log(data, "data alpah");
-
-//       return data;
-//     } catch (error) {
-//       return thunkAPI.rejectWithValue(error.response?.data || error.message);
-//     }
-//   }
-// );
-
 export const updateSubject = createAsyncThunk(
   "subject/put",
-  async ({ id, data }, { rejectWithValue }) => {
+  async ({ id, userData }, { rejectWithValue }) => {
     try {
-      const response = await axiosInstance.put(`/subject/${id}`, data);
+      const formData = new FormData();
+
+      userData.pdf;
+      userData.banner.forEach((image) => {
+        formData.append("banner", image);
+      });
+      for (const key in userData) {
+        if (key !== "banner") {
+          formData.append(key, userData[key]);
+        }
+      }
+
+      const response = await axiosInstance.patch(`/subject/${id}`, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
       console.log(response, "response");
       return response?.data;
     } catch (error) {
