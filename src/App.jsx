@@ -54,14 +54,15 @@ const router = createBrowserRouter([
         element:<ListOrders/>
 
       },
-      {
-        path:"all-users",
-        element:<Alluser/>
-      }
+    
     ],
 
 
   },
+  {
+    path:"/all-users",
+    element:<Alluser/>
+  }
  
 ]);
 
