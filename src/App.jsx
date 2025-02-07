@@ -69,6 +69,10 @@ const router = createBrowserRouter([
       },
     ],
   },
+  {
+    path: "/all-users",
+    element: <Alluser />,
+  },
 ]);
 
 function App() {
