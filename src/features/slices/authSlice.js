@@ -10,7 +10,7 @@ const initialState = {
   isError: false,
   message: null,
   isSuccess: false,
-  user:null
+  user: null,
 };
 
 const authSlice = createSlice({
@@ -20,6 +20,14 @@ const authSlice = createSlice({
     clearUser: (state) => {
       state.isUserLoggedIn = false;
       state.adminInfo = null;
+    },
+    logout: (state) => {
+      localStorage.clear();
+      state.isLoading = false;
+      state.isAdminLoggedIn = false;
+      state.userInfo = null;
+      state.userToken = null;
+      state.isError = null;
     },
   },
   extraReducers: (builder) => {
@@ -45,10 +53,9 @@ const authSlice = createSlice({
     builder.addCase(PURGE, () => {
       return initialState;
     }),
-
-    builder.addCase(getAlluser.pending, (state) => {
-      state.isLoading = true;
-    }),
+      builder.addCase(getAlluser.pending, (state) => {
+        state.isLoading = true;
+      }),
       builder.addCase(getAlluser.rejected, (state, action) => {
         state.isLoading = false;
         state.isSuccess = false;
@@ -60,14 +67,11 @@ const authSlice = createSlice({
         state.isLoading = false;
         state.isSuccess = true;
         state.isError = false;
-        state.user=action.payload;
+        state.user = action.payload;
         state.message = "";
-        toast.success("Login Successful!!", { position: "top-center" });
       });
-
   },
-  
 });
 
-export const { clearUser } = authSlice.actions;
+export const { clearUser, logout } = authSlice.actions;
 export default authSlice.reducer;

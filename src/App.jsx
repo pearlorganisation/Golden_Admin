@@ -13,65 +13,68 @@ import EditSubject from "./pages/EditSubject/EditSubject";
 import Addfaculty from "./pages/AddFaculty/Addfaculty";
 import ListOrders from "./pages/ListOrders/ListOrders";
 import Alluser from "./pages/Users/Alluser";
-
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <Login />,
-  },
-  {
-    path: "/dashboard",
-    element: <LayoutComponent />,
-    children: [
-      {
-        index: true,
-        element: <Dashboard />,
-      },
-      {
-        path: "create-notes",
-        element: <AddNotes />,
-      },
-      {
-        path: "notes",
-        element: <ListNotes />,
-      },
-      {
-        path: "subjects",
-        element: <ListSubjects />,
-      },
-      {
-        path: "create-subject",
-        element: <AddSubject />,
-      },
-      {
-        path: "viewSubject/:id",
-        element: <ViewSubject />,
-      },
-      {
-        path: "editSubject/:id",
-        element: <EditSubject />,
-      },
-      {
-        path: "send-pdf",
-        element: <SendPDF />,
-      },
-      {
-        path: "create-faculty",
-        element: <Addfaculty />,
-      },
-      {
-        path: "orders",
-        element: <ListOrders />,
-      },
-      {
-        path: "all-users",
-        element: <Alluser />,
-      },
-    ],
-  },
-]);
+import { useSelector } from "react-redux";
 
 function App() {
+  const { isAdminLoggedIn } = useSelector((state) => state.auth);
+
+  console.log(isAdminLoggedIn, "is Admin Logged In");
+  const router = createBrowserRouter([
+    {
+      path: "/login",
+      element: !isAdminLoggedIn ? <Login /> : <LayoutComponent />,
+    },
+    {
+      path: "/dashboard",
+      element: isAdminLoggedIn ? <LayoutComponent /> : <Login />,
+      children: [
+        {
+          index: true,
+          element: <Dashboard />,
+        },
+        {
+          path: "create-notes",
+          element: <AddNotes />,
+        },
+        {
+          path: "notes",
+          element: <ListNotes />,
+        },
+        {
+          path: "subjects",
+          element: <ListSubjects />,
+        },
+        {
+          path: "create-subject",
+          element: <AddSubject />,
+        },
+        {
+          path: "viewSubject/:id",
+          element: <ViewSubject />,
+        },
+        {
+          path: "editSubject/:id",
+          element: <EditSubject />,
+        },
+        {
+          path: "send-pdf",
+          element: <SendPDF />,
+        },
+        {
+          path: "create-faculty",
+          element: <Addfaculty />,
+        },
+        {
+          path: "orders",
+          element: <ListOrders />,
+        },
+        {
+          path: "all-users",
+          element: <Alluser />,
+        },
+      ],
+    },
+  ]);
   return (
     <>
       <RouterProvider router={router} />
