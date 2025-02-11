@@ -1,4 +1,8 @@
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import {
+  createBrowserRouter,
+  Navigate,
+  RouterProvider,
+} from "react-router-dom";
 import "./App.css";
 import Login from "./pages/Login/Login";
 import LayoutComponent from "./components/Layout/LayoutComponent";
@@ -26,7 +30,11 @@ function App() {
     },
     {
       path: "/dashboard",
-      element: isAdminLoggedIn ? <LayoutComponent /> : <Login />,
+      element: isAdminLoggedIn ? (
+        <LayoutComponent />
+      ) : (
+        <Navigate to={`/login`} />
+      ),
       children: [
         {
           index: true,
