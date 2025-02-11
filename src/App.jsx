@@ -30,11 +30,7 @@ function App() {
     },
     {
       path: "/dashboard",
-      element: isAdminLoggedIn ? (
-        <LayoutComponent />
-      ) : (
-        <Navigate to={`/login`} />
-      ),
+      element: isAdminLoggedIn ? <LayoutComponent /> : <Login />,
       children: [
         {
           index: true,
