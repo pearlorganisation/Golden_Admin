@@ -4,7 +4,7 @@ import { ToastContainer } from "react-toastify";
 import { CreateFaculty } from "../../features/actions/facultyAction";
 import { useDispatch } from "react-redux";
 
-function Addfaculty() {
+function AddFaculty() {
   const dispatch = useDispatch();
   const {
     register,
@@ -100,4 +100,4 @@ ${
   );
 }
 
-export default Addfaculty;
+export default AddFaculty;

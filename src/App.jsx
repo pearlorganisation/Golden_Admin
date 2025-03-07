@@ -10,10 +10,11 @@ import AddSubject from "./pages/AddSubject/AddSubject";
 import ViewSubject from "./pages/ViewSubject/ViewSubject";
 import SendPDF from "./pages/SendPDF/SendPDF";
 import EditSubject from "./pages/EditSubject/EditSubject";
-import Addfaculty from "./pages/AddFaculty/Addfaculty";
+
 import ListOrders from "./pages/ListOrders/ListOrders";
 import Alluser from "./pages/Users/Alluser";
 import { useSelector } from "react-redux";
+import AddFaculty from "./pages/AddFaculty/Addfaculty";
 
 function App() {
   const { isAdminLoggedIn } = useSelector((state) => state.auth);
@@ -66,7 +67,7 @@ function App() {
         },
         {
           path: "create-faculty",
-          element: <Addfaculty />,
+          element: <AddFaculty />,
         },
         {
           path: "orders",
