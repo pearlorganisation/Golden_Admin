@@ -1,4 +1,3 @@
-import React from "react";
 import { useForm } from "react-hook-form";
 // import { useDispatch, useSelector } from "react-redux";
 import { ToastContainer } from "react-toastify";
@@ -6,18 +5,21 @@ import { CreateFaculty } from "../../features/actions/facultyAction";
 import { useDispatch } from "react-redux";
 
 function Addfaculty() {
+  const dispatch = useDispatch();
+  const {
+    register,
+    handleSubmit,
 
-const dispatch = useDispatch()
-  const { register, handleSubmit, watch, setValue, reset ,formState:errors} = useForm({
+    formState: errors,
+  } = useForm({
     defaultValues: {
       name: "",
       institute: "",
     },
   });
 
-
   const onSubmit = (data) => {
-    const formData = { ...data, }
+    const formData = { ...data };
     dispatch(CreateFaculty(formData));
   };
   return (
@@ -59,23 +61,38 @@ const dispatch = useDispatch()
                 htmlFor="institute"
                 className="block text-2xl font-medium text-gray-700 mb-2"
               >
-               institute{" "}
+                institute{" "}
               </label>
               <input
                 type="text"
                 id="institute"
-                {...register("institute", { required: "institute is required" })}
+                {...register("institute", {
+                  required: "institute is required",
+                })}
                 className={`shadow-md bg-gray-50 border
 ${
   errors.institute ? "border-red-500" : "border-gray-300"
 } text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 `}
-placeholder="enter institute Name"
+                placeholder="enter institute Name"
               />
             </div>
-            <button type="submit"  className="bg-blue-500 text-white p-3 rounded-lg hover:bg-blue-600 transition-colors">
-                Save
+            <button
+              type="submit"
+              className="bg-blue-500 text-white p-3 rounded-lg hover:bg-blue-600 transition-colors"
+            >
+              Save
             </button>
-            <ToastContainer position="top-right" autoClose={3000} hideProgressBar={false} newestOnTop closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover/>
+            <ToastContainer
+              position="top-right"
+              autoClose={3000}
+              hideProgressBar={false}
+              newestOnTop
+              closeOnClick
+              rtl={false}
+              pauseOnFocusLoss
+              draggable
+              pauseOnHover
+            />
           </form>
         </div>
       </div>
